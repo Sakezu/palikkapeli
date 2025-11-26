@@ -5,7 +5,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BackgroundFollow : MonoBehaviour
 {
-    public Transform target;  // Pelaaja tai kamera
+    public Transform target;       // Pelaaja tai kamera
+    public float xFollowSpeed = 100f; // Kuinka nopeasti tausta seuraa x-akselilla
+    public float yFollowSpeed = 100f; // Kuinka nopeasti tausta seuraa y-akselilla
 
     private Vector3 offset;
 
@@ -17,7 +19,12 @@ public class BackgroundFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        // Seuraa täsmälleen targetia x-akselilla
-        transform.position = new Vector3(target.position.x + offset.x, transform.position.y, transform.position.z);
+        // Seuraa x-akselilla pehmeästi
+        float newX = Mathf.Lerp(transform.position.x, target.position.x + offset.x, xFollowSpeed * Time.deltaTime);
+
+        // Seuraa y-akselilla pehmeästi
+        float newY = Mathf.Lerp(transform.position.y, target.position.y + offset.y, yFollowSpeed * Time.deltaTime);
+
+        transform.position = new Vector3(newX, newY, transform.position.z);
     }
 }

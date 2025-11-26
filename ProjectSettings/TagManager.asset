@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 469610689
+    locked: 0
   - name: Tausta
     uniqueID: 3450488081
     locked: 0
